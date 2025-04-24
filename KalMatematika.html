@@ -10,7 +10,7 @@
         padding: 20px; 
         background: #f5f5f5; 
     }
-    h2, h3 { 
+    h2 { 
         background: #222; 
         color: white; 
         padding: 10px; 
@@ -33,62 +33,95 @@
         padding: 8px 15px; 
         background: #007BFF; 
         color: white; 
-        border: none; 
-        border-radius: 5px; 
+        border: none; border-radius: 5px; 
         cursor: pointer; 
     }
     .result { 
         margin-top: 10px; 
         font-weight: bold; 
     }
-    .dropdown button{
-        background-color: hsl(0, 0%, 80%);
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-    }
-    .dropdown a{
-        display: block;
-        color: black;
-        text-decoration: none;
-        padding: 10px 15px;
-    }
-    .dropdown .content{
-        display: none;
-        position: absolute;
-        background-color: hsl(0, 0%, 95%);
-        min-width: 100px;
-        box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.795);
-    }
-    .dropdown:hover .content{
-        display: block;
-    }
-    .dropdown:hover button{
-        background-color: hsl(0, 0%, 70%);
-    }
-    .dropdown a:hover{
-        background-color: hsl(0, 0%, 90%);
-    }
-    .dropdown{
-        display: inline-block;
-    }
+    .navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
   </style>
 </head>
 <body>
 
-  <div class="dropdown">
-    <button>=</button>
-    <div class="content">
-        <a href="index.html">Home</a>
+  <div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">Dropdown
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="KalKimia.html">Kimia</a>
         <a href="KalFisika.html">Fisika</a>
-        <a href="KalKimia.html">kimia</a>
         <a href="KalMatematika.html">Matematika</a>
-        <a href="KalTeknikInformatika.html">Teknikk Informatika</a>
-        <a href="KalEkonomiKeuangan.html">Ekonomi Keuangan</a>
+        <a href="KalTeknikInformatika.html">Informatika</a>
+        <a href="KalEkonomiKeuangan.html">Ekonomi</a>
         <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
-    </div>
-</div>
+      </div>
+      </div>
+    <a href="index.html">Home</a>
+    <a href="#news">News</a> 
+  </div>
 
   <h1>Kumpulan Kalkulator Matematika</h1>
 
@@ -98,8 +131,10 @@
     <button onclick="hitungMath('akar')">Akar</button>
     <button onclick="hitungMath('pangkat')">Pangkat 2</button>
     <div class="result" id="hasilMath"></div>
-
-    <h3>Luas dan Volume Bangun Ruang</h3>
+  </div>
+  
+<div class="calc">
+    <h2>2. Luas dan Volume Bangun Ruang</h2>
     <label>Rusuk Kubus (cm): <input type="number" id="rusukKubus"></label>
     <button onclick="hitungBangun('kubus')">Hitung Kubus</button>
 
@@ -128,15 +163,19 @@
     <button onclick="hitungBangun('kerucut')">Hitung Kerucut</button>
 
     <div class="result" id="hasilBangun"></div>
+  </div>
 
-    <h3>Persamaan Kuadrat (ax² + bx + c = 0)</h3>
+<div class="calc">
+    <h2>3. Persamaan Kuadrat (ax² + bx + c = 0)</h2>
     <label>a: <input type="number" id="aKuadrat"></label>
     <label>b: <input type="number" id="bKuadrat"></label>
     <label>c: <input type="number" id="cKuadrat"></label>
     <button onclick="hitungKuadrat()">Hitung Akar</button>
     <div class="result" id="hasilKuadrat"></div>
+  </div>
 
-    <h3>Statistika</h3>
+<div class="calc">
+    <h2>4. Statistika</h2>
     <label>Masukkan data (pisahkan dengan koma):</label>
     <input type="text" id="dataStat">
     <button onclick="hitungStatistika()">Hitung Statistika</button>
@@ -259,6 +298,21 @@
       });
       document.getElementById("hasilStatistika").innerText = `Mean: ${mean.toFixed(2)}, Median: ${median}, Modus: ${mode.join(", ")}`;
     }
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
   </script>
 
 </body>
