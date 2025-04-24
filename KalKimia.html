@@ -41,71 +41,111 @@
         margin-top: 10px; 
         font-weight: bold; 
     }
-    .dropdown button{
-        background-color: hsl(0, 0%, 80%);
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-    }
-    .dropdown a{
-        display: block;
-        color: black;
-        text-decoration: none;
-        padding: 10px 15px;
-    }
-    .dropdown .content{
-        display: none;
-        position: absolute;
-        background-color: hsl(0, 0%, 95%);
-        min-width: 100px;
-        box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.795);
-    }
-    .dropdown:hover .content{
-        display: block;
-    }
-    .dropdown:hover button{
-        background-color: hsl(0, 0%, 70%);
-    }
-    .dropdown a:hover{
-        background-color: hsl(0, 0%, 90%);
-    }
-    .dropdown{
-        display: inline-block;
-    }
+    .navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
   </style>
 </head>
 <body>
 
-  <div class="dropdown">
-    <button>=</button>
-    <div class="content">
-        <a href="index.html">Home</a>
+  <div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">Dropdown
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="KalKimia.html">Kimia</a>
         <a href="KalFisika.html">Fisika</a>
-        <a href="KalKimia.html">kimia</a>
         <a href="KalMatematika.html">Matematika</a>
-        <a href="KalTeknikInformatika.html">Teknikk Informatika</a>
-        <a href="KalEkonomiKeuangan.html">Ekonomi Keuangan</a>
+        <a href="KalTeknikInformatika.html">Informatika</a>
+        <a href="KalEkonomiKeuangan.html">Ekonomi</a>
         <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
-    </div>
-</div>
+      </div>
+      </div> 
+    <a href="index.html">Home</a>
+    <a href="#news">News</a>
+  </div>
 
   <h1>Kumpulan Kalkulator Kimia</h1>
 
   <!-- Kalkulator Kimia -->
   <div class="calc">
-    <h2>1. Kalkulator Kimia</h2>
+    <h2>1. Kalkulator -</h2>
     <label>Massa molar (g/mol): <input type="number" id="massaMolar"></label>
     <label>Mol: <input type="number" id="jumlahMol"></label>
     <button onclick="molKeGram()">Konversi Mol → Gram</button>
     <button onclick="gramKeMol()">Konversi Gram → Mol</button>
     <div class="result" id="hasilMolGram"></div>
+  </div>
 
+  <div class="calc">
+    <h2>2. Hukum -</h2>
     <label>Mol (untuk Konsentrasi): <input type="number" id="molKons"></label>
     <label>Volume (L): <input type="number" id="volumeL"></label>
     <button onclick="hitungKonsentrasi()">Hitung Konsentrasi (M)</button>
     <div class="result" id="hasilKonsentrasi"></div>
+</div>
 
+<div class="calc">
+    <h2>3. Hukum -</h2>
     <label>pH atau pOH: <input type="number" id="nilaiPH"></label>
     <select id="jenisPH">
       <option value="ph">pH</option>
@@ -113,22 +153,28 @@
     </select>
     <button onclick="hitungPH()">Hitung pH/pOH</button>
     <div class="result" id="hasilPH"></div>
-
-    <h3>Hukum Boyle (P1V1 = P2V2)</h3>
+  </div>
+  
+  <div class="calc">
+    <h2>4. Hukum Boyle (P1V1 = P2V2)</h2>
     <label>P1: <input type="number" id="p1"></label>
     <label>V1: <input type="number" id="v1"></label>
     <label>P2: <input type="number" id="p2"></label>
     <button onclick="hitungV2()">Hitung V2</button>
     <div class="result" id="hasilBoyle"></div>
+  </div>
 
-    <h3>Hukum Charles (V1/T1 = V2/T2)</h3>
+  <div class="calc">
+    <h2>5. Hukum Charles (V1/T1 = V2/T2)</h2>
     <label>V1: <input type="number" id="v1c"></label>
     <label>T1 (K): <input type="number" id="t1c"></label>
     <label>T2 (K): <input type="number" id="t2c"></label>
     <button onclick="hitungCharles()">Hitung V2</button>
     <div class="result" id="hasilCharles"></div>
+</div>
 
-    <h3>Konversi Suhu</h3>
+<div class="calc">
+    <h2>6. Konversi Suhu</h2>
     <label>Nilai suhu: <input type="number" id="nilaiSuhu"></label>
     <select id="tipeSuhu">
       <option value="cToK">Celsius ke Kelvin</option>
@@ -230,6 +276,21 @@
         document.getElementById("hasilSuhu").innerText = "Masukkan nilai suhu yang valid.";
       }
     }
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
   </script>
 
 </body>
