@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Ekonomi & Keuangan</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f5f5; 
+    }
+    h2 { 
+        background: #222; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    .calc { 
+        background: white; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        margin: 5px 0; 
+        padding: 8px; 
+        width: 100%; 
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 8px 15px; 
+        background: #007BFF; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+    .result { 
+        margin-top: 10px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Ekonomi & Keuangan</h1>
+
+  <!-- Kalkulator Ekonomi: Bunga Sederhana dan Majemuk -->
+  <div class="calc">
+    <h2>4. Kalkulator Bunga Sederhana & Majemuk</h2>
+    <label>Modal Awal (Rp): <input type="number" id="modal"></label>
+    <label>Suku Bunga Tahunan (%): <input type="number" id="bunga"></label>
+    <label>Waktu (tahun): <input type="number" id="waktu"></label>
+    <select id="jenisBunga">
+      <option value="sederhana">Bunga Sederhana</option>
+      <option value="majemuk">Bunga Majemuk</option>
+    </select>
+    <button onclick="hitungBunga()">Hitung</button>
+    <div class="result" id="hasilBunga"></div>
+  </div>
+
+  <!-- Kalkulator Konversi Mata Uang (tanpa API, rate tetap sebagai contoh) -->
+  <div class="calc">
+    <h2>5. Kalkulator Konversi Mata Uang</h2>
+    <label>Jumlah: <input type="number" id="jumlahUang"></label>
+    <label>Dari:
+      <select id="mataUangDari">
+        <option value="IDR">IDR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+        <option value="GBP">GBP</option>
+      </select>
+    </label>
+    <label>Ke:
+      <select id="mataUangKe">
+        <option value="IDR">IDR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+        <option value="GBP">GBP</option>
+      </select>
+    </label>
+    <button onclick="konversiUang()">Konversi</button>
+    <div class="result" id="hasilKonversiUang"></div>
+  </div>
+
+  <!-- Kalkulator Perbandingan Harga Diskon -->
+  <div class="calc">
+    <h2>6. Kalkulator Perbandingan Harga Diskon</h2>
+    <label>Harga Asli (Rp): <input type="number" id="hargaAsli"></label>
+    <label>Diskon (%): <input type="number" id="diskon"></label>
+    <button onclick="hitungDiskon()">Hitung Harga Akhir</button>
+    <div class="result" id="hasilDiskon"></div>
+  </div>
+
+  <!-- Kalkulator Pajak -->
+  <div class="calc">
+    <h2>17. Kalkulator Pajak</h2>
+    
+    <label>Jenis Pajak:
+      <select id="jenisPajak">
+        <option value="ppn">PPN (11%)</option>
+        <option value="pph">Pajak Penghasilan</option>
+        <option value="lainnya">Pajak Lainnya</option>
+      </select>
+    </label>
+  
+    <label>Jumlah Pendapatan/Nilai Barang (Rp): <input type="number" id="jumlahPajak"></label>
+    
+    <div id="opsionalPersen" style="display:none;">
+      <label>Persentase Pajak (%): <input type="number" id="persenPajak" value="10"></label>
+    </div>
+    
+    <button onclick="hitungPajak()">Hitung Pajak</button>
+    <div class="result" id="hasilPajak"></div>
+  </div>
+  
+  <!-- Kalkulator Pinjaman -->
+  <div class="calc">
+    <h2>18. Kalkulator Pinjaman</h2>
+  
+    <label>Jumlah Pinjaman (Rp): <input type="number" id="jumlahPinjaman" placeholder="Contoh: 10000000"></label>
+    <label>Suku Bunga per Tahun (%): <input type="number" step="0.01" id="bungaPinjaman" placeholder="Contoh: 10"></label>
+    <label>Tenor (bulan): <input type="number" id="tenorPinjaman" placeholder="Contoh: 12"></label>
+  
+    <button onclick="hitungPinjaman()">Hitung Angsuran</button>
+    <div class="result" id="hasilPinjaman"></div>
+  </div>
+  
+  <script>
+    function hitungBunga() {
+      const modal = parseFloat(document.getElementById("modal").value);
+      const bunga = parseFloat(document.getElementById("bunga").value) / 100;
+      const waktu = parseFloat(document.getElementById("waktu").value);
+      const jenis = document.getElementById("jenisBunga").value;
+      let hasil;
+      if (jenis === "sederhana") {
+        hasil = modal + (modal * bunga * waktu);
+      } else {
+        hasil = modal * Math.pow(1 + bunga, waktu);
+      }
+      document.getElementById("hasilBunga").innerText = `Total setelah ${waktu} tahun: Rp ${hasil.toFixed(2)}`;
+    }
+
+    function konversiUang() {
+      const jumlah = parseFloat(document.getElementById("jumlahUang").value);
+      const dari = document.getElementById("mataUangDari").value;
+      const ke = document.getElementById("mataUangKe").value;
+
+      const kurs = {
+        IDR: { USD: 0.000065, EUR: 0.000061, JPY: 0.0098, GBP: 0.000052, IDR: 1 },
+        USD: { IDR: 16756, EUR: 0.94, JPY: 150.5, GBP: 0.82, USD: 1 },
+        EUR: { IDR: 16500, USD: 1.06, JPY: 159.8, GBP: 0.87, EUR: 1 },
+        JPY: { IDR: 110, USD: 0.0066, EUR: 0.0062, GBP: 0.0055, JPY: 1 },
+        GBP: { IDR: 19000, USD: 1.22, EUR: 1.15, JPY: 180.3, GBP: 1 }
+      };
+
+      if (isNaN(jumlah)) {
+        document.getElementById("hasilKonversiUang").innerText = "Masukkan jumlah yang valid";
+        return;
+      }
+
+      const hasil = jumlah * kurs[dari][ke];
+      document.getElementById("hasilKonversiUang").innerText = `${jumlah} ${dari} = ${hasil.toFixed(2)} ${ke}`;
+    }
+
+    function hitungDiskon() {
+      const harga = parseFloat(document.getElementById("hargaAsli").value);
+      const diskon = parseFloat(document.getElementById("diskon").value);
+      if (isNaN(harga) || isNaN(diskon)) {
+        document.getElementById("hasilDiskon").innerText = "Masukkan harga dan diskon yang valid";
+        return;
+      }
+      const potongan = harga * (diskon / 100);
+      const akhir = harga - potongan;
+      document.getElementById("hasilDiskon").innerText = `Harga setelah diskon: Rp ${akhir.toFixed(2)} (Hemat Rp ${potongan.toFixed(2)})`;
+    }
+    document.getElementById("jenisPajak").addEventListener("change", function() {
+  const opsi = document.getElementById("opsionalPersen");
+  if (this.value === "lainnya" || this.value === "pph") {
+    opsi.style.display = "block";
+  } else {
+    opsi.style.display = "none";
+  }
+});
+
+function hitungPajak() {
+  const jenis = document.getElementById("jenisPajak").value;
+  const jumlah = parseFloat(document.getElementById("jumlahPajak").value);
+  let persen = 0;
+  let hasil = 0;
+
+  if (isNaN(jumlah) || jumlah < 0) {
+    document.getElementById("hasilPajak").innerText = "Masukkan jumlah yang valid.";
+    return;
+  }
+
+  if (jenis === "ppn") {
+    persen = 11;
+  } else {
+    persen = parseFloat(document.getElementById("persenPajak").value);
+    if (isNaN(persen) || persen < 0) {
+      document.getElementById("hasilPajak").innerText = "Masukkan persentase pajak yang valid.";
+      return;
+    }
+  }
+
+  hasil = (jumlah * persen) / 100;
+  const total = jumlah + hasil;
+
+  document.getElementById("hasilPajak").innerText =
+    `Pajak (${persen}%): Rp ${hasil.toFixed(2)}\nTotal setelah pajak: Rp ${total.toFixed(2)}`;
+}
+function hitungPinjaman() {
+  const pokok = parseFloat(document.getElementById("jumlahPinjaman").value);
+  const bungaTahunan = parseFloat(document.getElementById("bungaPinjaman").value);
+  const tenor = parseInt(document.getElementById("tenorPinjaman").value);
+
+  if (isNaN(pokok) || isNaN(bungaTahunan) || isNaN(tenor) || pokok <= 0 || bungaTahunan < 0 || tenor <= 0) {
+    document.getElementById("hasilPinjaman").innerText = "Masukkan nilai yang valid.";
+    return;
+  }
+
+  const bungaBulanan = bungaTahunan / 12 / 100;
+  const angsuran = (pokok * bungaBulanan) / (1 - Math.pow(1 + bungaBulanan, -tenor));
+  const totalBayar = angsuran * tenor;
+  const totalBunga = totalBayar - pokok;
+
+  document.getElementById("hasilPinjaman").innerText =
+    `Angsuran per bulan: Rp ${angsuran.toFixed(2)}\n` +
+    `Total pembayaran: Rp ${totalBayar.toFixed(2)}\n` +
+    `Total bunga: Rp ${totalBunga.toFixed(2)}`;
+}
+
+  </script>
+
+</body>
+</html>

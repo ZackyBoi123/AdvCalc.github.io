@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Matematika</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f5f5; 
+    }
+    h2 { 
+        background: #222; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    .calc { 
+        background: white; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        margin: 5px 0; 
+        padding: 8px; 
+        width: 100%; 
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 8px 15px; 
+        background: #007BFF; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+    .result { 
+        margin-top: 10px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Matematika</h1>
+
+  <div class="calc">
+    <h2>1. Kalkulator Matematika Lengkap</h2>
+    <label>Angka: <input type="number" id="angkaMath"></label>
+    <button onclick="hitungMath('akar')">Akar</button>
+    <button onclick="hitungMath('pangkat')">Pangkat 2</button>
+    <div class="result" id="hasilMath"></div>
+
+    <h3>Luas dan Volume Bangun Ruang</h3>
+    <label>Rusuk Kubus (cm): <input type="number" id="rusukKubus"></label>
+    <button onclick="hitungBangun('kubus')">Hitung Kubus</button>
+
+    <label>Panjang Balok (cm): <input type="number" id="panjangBalok"></label>
+    <label>Lebar Balok (cm): <input type="number" id="lebarBalok"></label>
+    <label>Tinggi Balok (cm): <input type="number" id="tinggiBalok"></label>
+    <button onclick="hitungBangun('balok')">Hitung Balok</button>
+
+    <label>Jari-jari Bola (cm): <input type="number" id="jariBola"></label>
+    <button onclick="hitungBangun('bola')">Hitung Bola</button>
+
+    <label>Alas Prisma (cm²): <input type="number" id="alasPrisma"></label>
+    <label>Tinggi Prisma (cm): <input type="number" id="tinggiPrisma"></label>
+    <button onclick="hitungBangun('prisma')">Hitung Prisma</button>
+
+    <label>Alas Limas (cm²): <input type="number" id="alasLimas"></label>
+    <label>Tinggi Limas (cm): <input type="number" id="tinggiLimas"></label>
+    <button onclick="hitungBangun('limas')">Hitung Limas</button>
+
+    <label>Jari-jari Tabung (cm): <input type="number" id="jariTabung"></label>
+    <label>Tinggi Tabung (cm): <input type="number" id="tinggiTabung"></label>
+    <button onclick="hitungBangun('tabung')">Hitung Tabung</button>
+
+    <label>Jari-jari Kerucut (cm): <input type="number" id="jariKerucut"></label>
+    <label>Tinggi Kerucut (cm): <input type="number" id="tinggiKerucut"></label>
+    <button onclick="hitungBangun('kerucut')">Hitung Kerucut</button>
+
+    <div class="result" id="hasilBangun"></div>
+
+    <h3>Persamaan Kuadrat (ax² + bx + c = 0)</h3>
+    <label>a: <input type="number" id="aKuadrat"></label>
+    <label>b: <input type="number" id="bKuadrat"></label>
+    <label>c: <input type="number" id="cKuadrat"></label>
+    <button onclick="hitungKuadrat()">Hitung Akar</button>
+    <div class="result" id="hasilKuadrat"></div>
+
+    <h3>Statistika</h3>
+    <label>Masukkan data (pisahkan dengan koma):</label>
+    <input type="text" id="dataStat">
+    <button onclick="hitungStatistika()">Hitung Statistika</button>
+    <div class="result" id="hasilStatistika"></div>
+  </div>
+
+  <script>
+    function hitungMath(tipe) {
+      const angka = parseFloat(document.getElementById("angkaMath").value);
+      let hasil = "";
+      if (isNaN(angka)) {
+        hasil = "Masukkan angka yang valid.";
+      } else if (tipe === "akar") {
+        hasil = `Akar dari ${angka} adalah ${Math.sqrt(angka).toFixed(2)}`;
+      } else {
+        hasil = `${angka} pangkat 2 adalah ${Math.pow(angka, 2)}`;
+      }
+      document.getElementById("hasilMath").innerText = hasil;
+    }
+
+    function hitungBangun(tipe) {
+      let hasil = "";
+      const pi = Math.PI;
+      if (tipe === "kubus") {
+        const r = parseFloat(document.getElementById("rusukKubus").value);
+        if (!isNaN(r)) {
+          const luas = 6 * r * r;
+          const volume = r * r * r;
+          hasil = `Luas Kubus: ${luas} cm², Volume: ${volume} cm³`;
+        }
+      } else if (tipe === "balok") {
+        const p = parseFloat(document.getElementById("panjangBalok").value);
+        const l = parseFloat(document.getElementById("lebarBalok").value);
+        const t = parseFloat(document.getElementById("tinggiBalok").value);
+        if (!isNaN(p) && !isNaN(l) && !isNaN(t)) {
+          const luas = 2 * (p*l + p*t + l*t);
+          const volume = p * l * t;
+          hasil = `Luas Balok: ${luas} cm², Volume: ${volume} cm³`;
+        }
+      } else if (tipe === "bola") {
+        const j = parseFloat(document.getElementById("jariBola").value);
+        if (!isNaN(j)) {
+          const luas = 4 * pi * j * j;
+          const volume = (4/3) * pi * Math.pow(j, 3);
+          hasil = `Luas Bola: ${luas.toFixed(2)} cm², Volume: ${volume.toFixed(2)} cm³`;
+        }
+      } else if (tipe === "prisma") {
+        const a = parseFloat(document.getElementById("alasPrisma").value);
+        const t = parseFloat(document.getElementById("tinggiPrisma").value);
+        if (!isNaN(a) && !isNaN(t)) {
+          const volume = a * t;
+          hasil = `Volume Prisma: ${volume} cm³`;
+        }
+      } else if (tipe === "limas") {
+        const a = parseFloat(document.getElementById("alasLimas").value);
+        const t = parseFloat(document.getElementById("tinggiLimas").value);
+        if (!isNaN(a) && !isNaN(t)) {
+          const volume = (1/3) * a * t;
+          hasil = `Volume Limas: ${volume} cm³`;
+        }
+      } else if (tipe === "tabung") {
+        const r = parseFloat(document.getElementById("jariTabung").value);
+        const t = parseFloat(document.getElementById("tinggiTabung").value);
+        if (!isNaN(r) && !isNaN(t)) {
+          const luas = 2 * pi * r * (r + t);
+          const volume = pi * r * r * t;
+          hasil = `Luas Tabung: ${luas.toFixed(2)} cm², Volume: ${volume.toFixed(2)} cm³`;
+        }
+      } else if (tipe === "kerucut") {
+        const r = parseFloat(document.getElementById("jariKerucut").value);
+        const t = parseFloat(document.getElementById("tinggiKerucut").value);
+        if (!isNaN(r) && !isNaN(t)) {
+          const s = Math.sqrt(r*r + t*t);
+          const luas = pi * r * (r + s);
+          const volume = (1/3) * pi * r * r * t;
+          hasil = `Luas Kerucut: ${luas.toFixed(2)} cm², Volume: ${volume.toFixed(2)} cm³`;
+        }
+      }
+      document.getElementById("hasilBangun").innerText = hasil;
+    }
+
+    function hitungKuadrat() {
+      const a = parseFloat(document.getElementById("aKuadrat").value);
+      const b = parseFloat(document.getElementById("bKuadrat").value);
+      const c = parseFloat(document.getElementById("cKuadrat").value);
+      const disk = b * b - 4 * a * c;
+      let hasil = "";
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        hasil = "Masukkan semua koefisien.";
+      } else if (disk < 0) {
+        hasil = "Tidak ada akar real.";
+      } else {
+        const akar1 = (-b + Math.sqrt(disk)) / (2 * a);
+        const akar2 = (-b - Math.sqrt(disk)) / (2 * a);
+        hasil = `Akar: x₁ = ${akar1.toFixed(2)}, x₂ = ${akar2.toFixed(2)}`;
+      }
+      document.getElementById("hasilKuadrat").innerText = hasil;
+    }
+
+    function hitungStatistika() {
+      const data = document.getElementById("dataStat").value.split(',').map(Number);
+      if (data.some(isNaN)) {
+        document.getElementById("hasilStatistika").innerText = "Masukkan hanya angka, pisahkan dengan koma.";
+        return;
+      }
+      const n = data.length;
+      const mean = data.reduce((a, b) => a + b, 0) / n;
+      const sorted = [...data].sort((a, b) => a - b);
+      const median = n % 2 === 0 ? (sorted[n/2 - 1] + sorted[n/2]) / 2 : sorted[Math.floor(n/2)];
+      const modeMap = {};
+      let mode = [], maxFreq = 0;
+      data.forEach(num => {
+        modeMap[num] = (modeMap[num] || 0) + 1;
+        if (modeMap[num] > maxFreq) {
+          maxFreq = modeMap[num];
+          mode = [num];
+        } else if (modeMap[num] === maxFreq && !mode.includes(num)) {
+          mode.push(num);
+        }
+      });
+      document.getElementById("hasilStatistika").innerText = `Mean: ${mean.toFixed(2)}, Median: ${median}, Modus: ${mode.join(", ")}`;
+    }
+  </script>
+
+</body>
+</html>

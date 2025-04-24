@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Geografi Lingkungan</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f5f5; 
+    }
+    h2 { 
+        background: #222; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    .calc { 
+        background: white; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        margin: 5px 0; 
+        padding: 8px; 
+        width: 100%; 
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 8px 15px; 
+        background: #007BFF; 
+        color: white; 
+        border: none; border-radius: 5px; 
+        cursor: pointer; 
+    }
+    .result { 
+        margin-top: 10px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Geografi Lingkungan</h1>
+
+  <!-- Kalkulator Konversi Jarak -->
+  <div class="calc">
+    <h2>1. Kalkulator Konversi Jarak</h2>
+    <label>Nilai: <input type="number" id="nilaiJarak"></label>
+    <label>Dari: 
+      <select id="dariSatuan">
+        <option value="km">Kilometer</option>
+        <option value="m">Meter</option>
+        <option value="cm">Centimeter</option>
+        <option value="mm">Milimeter</option>
+        <option value="mi">Mil</option>
+        <option value="yd">Yard</option>
+        <option value="ft">Kaki</option>
+        <option value="in">Inci</option>
+      </select>
+    </label>
+    <label>Ke: 
+      <select id="keSatuan">
+        <option value="km">Kilometer</option>
+        <option value="m">Meter</option>
+        <option value="cm">Centimeter</option>
+        <option value="mm">Milimeter</option>
+        <option value="mi">Mil</option>
+        <option value="yd">Yard</option>
+        <option value="ft">Kaki</option>
+        <option value="in">Inci</option>
+      </select>
+    </label>
+    <button onclick="konversiJarak()">Konversi</button>
+    <div class="result" id="hasilKonversiJarak"></div>
+  </div>
+
+<!-- Kalkulator Skala Peta -->
+<div class="calc">
+    <h2>2. Kalkulator Skala Peta</h2>
+    <label>Jarak di Peta (cm): <input type="number" id="jarakPeta"></label>
+    <label>Skala (misal: 1:50000): <input type="text" id="skalaPeta"></label>
+    <button onclick="hitungSkala('keNyata')">Hitung Jarak Sebenarnya</button>
+    <div class="result" id="hasilSkala"></div>
+</div>
+
+<!-- Kalkulator Jarak Antar Titik -->
+<div class="calc">
+  <h2>14. Kalkulator Jarak Antar Titik</h2>
+  <label>x₁: <input type="number" id="x1"></label>
+  <label>y₁: <input type="number" id="y1"></label>
+  <label>x₂: <input type="number" id="x2"></label>
+  <label>y₂: <input type="number" id="y2"></label>
+  <button onclick="hitungJarak()">Hitung Jarak</button>
+  <div class="result" id="hasilJarak"></div>
+</div>
+
+<!-- Kalkulator Jarak Geografis -->
+<div class="calc">
+  <h2>15. Kalkulator Jarak Geografis (Haversine)</h2>
+  <label>Latitude Titik 1 (°): <input type="number" id="lat1"></label>
+  <label>Longitude Titik 1 (°): <input type="number" id="lon1"></label>
+  <label>Latitude Titik 2 (°): <input type="number" id="lat2"></label>
+  <label>Longitude Titik 2 (°): <input type="number" id="lon2"></label>
+  <button onclick="hitungJarakGeografis()">Hitung Jarak Geografis</button>
+  <div class="result" id="hasilGeo"></div>
+</div>
+
+<!-- Kalkulator Zona Waktu -->
+<div class="calc">
+  <h2>16. Kalkulator Zona Waktu</h2>
+  <label>Zona Waktu Lokasi 1 (UTC±): <input type="number" step="0.5" id="utc1" placeholder="Contoh: 7 untuk UTC+7"></label>
+  <label>Zona Waktu Lokasi 2 (UTC±): <input type="number" step="0.5" id="utc2" placeholder="Contoh: -5 untuk UTC-5"></label>
+  <button onclick="hitungSelisihZona()">Hitung Selisih Waktu</button>
+  <div class="result" id="hasilZona"></div>
+</div>
+
+  <script>
+    function konversiJarak() {
+      const nilai = parseFloat(document.getElementById("nilaiJarak").value);
+      const dari = document.getElementById("dariSatuan").value;
+      const ke = document.getElementById("keSatuan").value;
+
+      const konversiKeMeter = {
+        km: 1000,
+        m: 1,
+        cm: 0.01,
+        mm: 0.001,
+        mi: 1609.34,
+        yd: 0.9144,
+        ft: 0.3048,
+        in: 0.0254
+      };
+
+      if (isNaN(nilai)) {
+        document.getElementById("hasilKonversiJarak").innerText = "Masukkan nilai yang valid";
+        return;
+      }
+
+      const meter = nilai * konversiKeMeter[dari];
+      const hasil = meter / konversiKeMeter[ke];
+      document.getElementById("hasilKonversiJarak").innerText = `${nilai} ${dari} = ${hasil.toFixed(4)} ${ke}`;
+    }
+
+    function hitungMatematika() {
+      const a = parseFloat(document.getElementById("angka1").value);
+      const b = parseFloat(document.getElementById("angka2").value);
+      const op = document.getElementById("operator").value;
+      let hasil;
+
+      if (isNaN(a) || isNaN(b)) {
+        hasil = "Masukkan angka yang valid";
+      } else {
+        switch (op) {
+          case '+': hasil = a + b; break;
+          case '-': hasil = a - b; break;
+          case '*': hasil = a * b; break;
+          case '/': hasil = b !== 0 ? a / b : "Tidak bisa dibagi 0"; break;
+          default: hasil = "Operator tidak dikenali";
+        }
+      }
+      document.getElementById("hasilMatematika").innerText = `Hasil = ${hasil}`;
+      
+      function hitungSkala(tipe) {
+      const skalaStr = document.getElementById("skalaPeta").value;
+      const match = skalaStr.match(/1\s*:\s*(\d+)/);
+      if (!match) {
+        document.getElementById("hasilSkala").innerText = "Format skala tidak valid. Gunakan format 1:50000";
+        return;
+      }
+      const skala = parseFloat(match[1]);
+      let hasil = "";
+      if (tipe === "keNyata") {
+        const jarakPeta = parseFloat(document.getElementById("jarakPeta").value);
+        if (!isNaN(jarakPeta)) {
+          const jarakNyata = (jarakPeta * skala) / 100000; // dalam km
+          hasil = `Jarak sebenarnya: ${jarakNyata.toFixed(2)} km`;
+        } else {
+          hasil = "Masukkan jarak peta yang valid.";
+        }
+      } else {
+        const jarakNyata = parseFloat(document.getElementById("jarakNyata").value);
+        if (!isNaN(jarakNyata)) {
+          const jarakPeta = (jarakNyata * 100000) / skala;
+          hasil = `Jarak di peta: ${jarakPeta.toFixed(2)} cm`;
+        } else {
+          hasil = "Masukkan jarak sebenarnya yang valid.";
+        }
+      }
+      document.getElementById("hasilSkala").innerText = hasil;
+    }
+}
+function hitungJarak() {
+  const x1 = parseFloat(document.getElementById("x1").value);
+  const y1 = parseFloat(document.getElementById("y1").value);
+  const x2 = parseFloat(document.getElementById("x2").value);
+  const y2 = parseFloat(document.getElementById("y2").value);
+
+  if (!isNaN(x1) && !isNaN(y1) && !isNaN(x2) && !isNaN(y2)) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const jarak = Math.sqrt(dx * dx + dy * dy);
+    document.getElementById("hasilJarak").innerText = `Jarak antara titik: ${jarak.toFixed(4)} unit`;
+  } else {
+    document.getElementById("hasilJarak").innerText = "Masukkan semua koordinat dengan benar.";
+  }
+}
+function hitungJarakGeografis() {
+  const lat1 = parseFloat(document.getElementById("lat1").value);
+  const lon1 = parseFloat(document.getElementById("lon1").value);
+  const lat2 = parseFloat(document.getElementById("lat2").value);
+  const lon2 = parseFloat(document.getElementById("lon2").value);
+
+  if ([lat1, lon1, lat2, lon2].every(coord => !isNaN(coord))) {
+    const R = 6371; // Radius Bumi dalam kilometer
+    const toRad = deg => deg * Math.PI / 180;
+
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const jarak = R * c;
+
+    document.getElementById("hasilGeo").innerText = `Jarak antar lokasi: ${jarak.toFixed(4)} km`;
+  } else {
+    document.getElementById("hasilGeo").innerText = "Masukkan semua koordinat dengan benar.";
+  }
+}
+function hitungSelisihZona() {
+  const utc1 = parseFloat(document.getElementById("utc1").value);
+  const utc2 = parseFloat(document.getElementById("utc2").value);
+
+  if (!isNaN(utc1) && !isNaN(utc2)) {
+    const selisih = Math.abs(utc1 - utc2);
+    const arah = utc1 > utc2 ? "lebih cepat" : utc1 < utc2 ? "lebih lambat" : "sama";
+    document.getElementById("hasilZona").innerText =
+      `Perbedaan waktu: ${selisih} jam.\nLokasi 1 ${arah} dari Lokasi 2.`;
+  } else {
+    document.getElementById("hasilZona").innerText = "Masukkan offset UTC yang valid untuk kedua lokasi.";
+  }
+}
+
+  </script>
+
+</body>
+</html>

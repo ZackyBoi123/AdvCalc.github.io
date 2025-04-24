@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Kimia</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f5f5; 
+    }
+    h2 { 
+        background: #222; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    .calc { 
+        background: white; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        margin: 5px 0; 
+        padding: 8px; 
+        width: 100%; 
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 8px 15px; 
+        background: #007BFF; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+    .result { 
+        margin-top: 10px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Kimia</h1>
+
+  <!-- Kalkulator Kimia -->
+  <div class="calc">
+    <h2>1. Kalkulator Kimia</h2>
+    <label>Massa molar (g/mol): <input type="number" id="massaMolar"></label>
+    <label>Mol: <input type="number" id="jumlahMol"></label>
+    <button onclick="molKeGram()">Konversi Mol → Gram</button>
+    <button onclick="gramKeMol()">Konversi Gram → Mol</button>
+    <div class="result" id="hasilMolGram"></div>
+
+    <label>Mol (untuk Konsentrasi): <input type="number" id="molKons"></label>
+    <label>Volume (L): <input type="number" id="volumeL"></label>
+    <button onclick="hitungKonsentrasi()">Hitung Konsentrasi (M)</button>
+    <div class="result" id="hasilKonsentrasi"></div>
+
+    <label>pH atau pOH: <input type="number" id="nilaiPH"></label>
+    <select id="jenisPH">
+      <option value="ph">pH</option>
+      <option value="poh">pOH</option>
+    </select>
+    <button onclick="hitungPH()">Hitung pH/pOH</button>
+    <div class="result" id="hasilPH"></div>
+
+    <h3>Hukum Boyle (P1V1 = P2V2)</h3>
+    <label>P1: <input type="number" id="p1"></label>
+    <label>V1: <input type="number" id="v1"></label>
+    <label>P2: <input type="number" id="p2"></label>
+    <button onclick="hitungV2()">Hitung V2</button>
+    <div class="result" id="hasilBoyle"></div>
+
+    <h3>Hukum Charles (V1/T1 = V2/T2)</h3>
+    <label>V1: <input type="number" id="v1c"></label>
+    <label>T1 (K): <input type="number" id="t1c"></label>
+    <label>T2 (K): <input type="number" id="t2c"></label>
+    <button onclick="hitungCharles()">Hitung V2</button>
+    <div class="result" id="hasilCharles"></div>
+
+    <h3>Konversi Suhu</h3>
+    <label>Nilai suhu: <input type="number" id="nilaiSuhu"></label>
+    <select id="tipeSuhu">
+      <option value="cToK">Celsius ke Kelvin</option>
+      <option value="kToC">Kelvin ke Celsius</option>
+      <option value="cToF">Celsius ke Fahrenheit</option>
+      <option value="fToC">Fahrenheit ke Celsius</option>
+    </select>
+    <button onclick="konversiSuhu()">Konversi</button>
+    <div class="result" id="hasilSuhu"></div>
+  </div>
+
+  <script>
+    function molKeGram() {
+      const mol = parseFloat(document.getElementById("jumlahMol").value);
+      const massaMolar = parseFloat(document.getElementById("massaMolar").value);
+      if (!isNaN(mol) && !isNaN(massaMolar)) {
+        const gram = mol * massaMolar;
+        document.getElementById("hasilMolGram").innerText = `Massa: ${gram.toFixed(4)} gram`;
+      } else {
+        document.getElementById("hasilMolGram").innerText = "Masukkan nilai mol dan massa molar yang valid.";
+      }
+    }
+
+    function gramKeMol() {
+      const mol = parseFloat(document.getElementById("jumlahMol").value);
+      const massaMolar = parseFloat(document.getElementById("massaMolar").value);
+      if (!isNaN(mol) && !isNaN(massaMolar) && massaMolar !== 0) {
+        const hasilMol = mol / massaMolar;
+        document.getElementById("hasilMolGram").innerText = `Mol: ${hasilMol.toFixed(4)} mol`;
+      } else {
+        document.getElementById("hasilMolGram").innerText = "Masukkan nilai massa dan massa molar yang valid.";
+      }
+    }
+
+    function hitungKonsentrasi() {
+      const mol = parseFloat(document.getElementById("molKons").value);
+      const volume = parseFloat(document.getElementById("volumeL").value);
+      if (!isNaN(mol) && !isNaN(volume) && volume !== 0) {
+        const kons = mol / volume;
+        document.getElementById("hasilKonsentrasi").innerText = `Konsentrasi: ${kons.toFixed(4)} M`;
+      } else {
+        document.getElementById("hasilKonsentrasi").innerText = "Masukkan nilai mol dan volume yang valid.";
+      }
+    }
+
+    function hitungPH() {
+      const nilai = parseFloat(document.getElementById("nilaiPH").value);
+      const jenis = document.getElementById("jenisPH").value;
+      if (!isNaN(nilai)) {
+        if (jenis === "ph") {
+          const poh = 14 - nilai;
+          document.getElementById("hasilPH").innerText = `pOH: ${poh.toFixed(2)}`;
+        } else {
+          const ph = 14 - nilai;
+          document.getElementById("hasilPH").innerText = `pH: ${ph.toFixed(2)}`;
+        }
+      } else {
+        document.getElementById("hasilPH").innerText = "Masukkan nilai pH atau pOH yang valid.";
+      }
+    }
+
+    function hitungV2() {
+      const p1 = parseFloat(document.getElementById("p1").value);
+      const v1 = parseFloat(document.getElementById("v1").value);
+      const p2 = parseFloat(document.getElementById("p2").value);
+      if (!isNaN(p1) && !isNaN(v1) && !isNaN(p2) && p2 !== 0) {
+        const v2 = (p1 * v1) / p2;
+        document.getElementById("hasilBoyle").innerText = `V2: ${v2.toFixed(4)}`;
+      } else {
+        document.getElementById("hasilBoyle").innerText = "Masukkan nilai yang valid untuk P1, V1, dan P2.";
+      }
+    }
+
+    function hitungCharles() {
+      const v1 = parseFloat(document.getElementById("v1c").value);
+      const t1 = parseFloat(document.getElementById("t1c").value);
+      const t2 = parseFloat(document.getElementById("t2c").value);
+      if (!isNaN(v1) && !isNaN(t1) && !isNaN(t2) && t1 !== 0) {
+        const v2 = (v1 * t2) / t1;
+        document.getElementById("hasilCharles").innerText = `V2: ${v2.toFixed(4)}`;
+      } else {
+        document.getElementById("hasilCharles").innerText = "Masukkan nilai yang valid untuk V1, T1, dan T2.";
+      }
+    }
+
+    function konversiSuhu() {
+      const nilai = parseFloat(document.getElementById("nilaiSuhu").value);
+      const tipe = document.getElementById("tipeSuhu").value;
+      let hasil = "";
+      if (!isNaN(nilai)) {
+        switch (tipe) {
+          case "cToK": hasil = `${(nilai + 273.15).toFixed(2)} K`; break;
+          case "kToC": hasil = `${(nilai - 273.15).toFixed(2)} °C`; break;
+          case "cToF": hasil = `${((nilai * 9/5) + 32).toFixed(2)} °F`; break;
+          case "fToC": hasil = `${((nilai - 32) * 5/9).toFixed(2)} °C`; break;
+        }
+        document.getElementById("hasilSuhu").innerText = `Hasil: ${hasil}`;
+      } else {
+        document.getElementById("hasilSuhu").innerText = "Masukkan nilai suhu yang valid.";
+      }
+    }
+  </script>
+
+</body>
+</html>

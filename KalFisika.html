@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Edukasi</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    h2 { background: #222; color: white; padding: 10px; border-radius: 5px; }
+    .calc { background: white; padding: 15px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    input, select, textarea { margin: 5px 0; padding: 8px; width: 100%; }
+    button { margin-top: 10px; padding: 8px 15px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .result { margin-top: 10px; font-weight: bold; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Edukasi</h1>
+
+  <!-- Kalkulator Fisika -->
+  <div class="calc">
+    <h2>Kalkulator Fisika</h2>
+    <h3>Hukum Newton</h3>
+    <label>Gaya (N): <input type="number" id="gaya"></label>
+    <label>Massa (kg): <input type="number" id="massaFisika"></label>
+    <label>Percepatan (m/s²): <input type="number" id="percepatan"></label>
+    <button onclick="hitungHukumNewton()">Hitung dengan Hukum Newton</button>
+    <div class="result" id="hasilFisika"></div>
+  </div>
+
+  <h1>Kalkulator Gravitasi</h1>
+
+  <div class="calc">
+    <h2>Hitung Gaya Gravitasi antar dua benda</h2>
+    <label>Massa benda pertama (m₁) (kg):</label>
+    <input type="number" id="massa1" placeholder="Masukkan massa m₁ (kg)" />
+
+    <label>Massa benda kedua (m₂) (kg):</label>
+    <input type="number" id="massa2" placeholder="Masukkan massa m₂ (kg)" />
+
+    <label>Jarak antara dua benda (r) (m):</label>
+    <input type="number" id="jarak" placeholder="Masukkan jarak r (m)" />
+
+    <button onclick="hitungGravitasi()">Hitung Gaya Gravitasi</button>
+
+    <div class="result" id="hasilGravitasi"></div>
+  </div>
+
+  <h1>Kalkulator Energi Kinetik</h1>
+
+  <div class="calc">
+    <h2>Hitung Energi Kinetik (Ek = ½ × m × v²)</h2>
+    <label>Massa (m) (kg):</label>
+    <input type="number" id="massa" placeholder="Masukkan massa (kg)" />
+
+    <label>Kecepatan (v) (m/s):</label>
+    <input type="number" id="kecepatan" placeholder="Masukkan kecepatan (m/s)" />
+
+    <button onclick="hitungEnergiKinetik()">Hitung Energi Kinetik</button>
+
+    <div class="result" id="hasilEnergi"></div>
+  </div>
+
+  <h1>Kalkulator Hukum Ohm</h1>
+
+  <div class="calc">
+    <h2>Hitung Tegangan, Arus, atau Hambatan</h2>
+    <label>Tegangan (V):</label>
+    <input type="number" id="tegangan" placeholder="Masukkan tegangan (V)" />
+
+    <label>Arus (I):</label>
+    <input type="number" id="arus" placeholder="Masukkan arus (A)" />
+
+    <label>Hambatan (R):</label>
+    <input type="number" id="hambatan" placeholder="Masukkan hambatan (Ω)" />
+
+    <button onclick="hitungHukumOhm()">Hitung</button>
+
+    <div class="result" id="hasilOhm"></div>
+  </div>
+
+  <h1>Kalkulator Usaha dan Daya</h1>
+
+  <div class="calc">
+    <h2>Hitung Usaha dan Daya</h2>
+
+    <!-- Kalkulator Usaha -->
+    <h3>Usaha (W = F × d)</h3>
+    <label>Gaya (F) dalam Newton (N):</label>
+    <input type="number" id="gayaUsaha" placeholder="Masukkan gaya (F)" />
+    
+    <label>Jarak (d) dalam meter (m):</label>
+    <input type="number" id="jarakUsaha" placeholder="Masukkan jarak (d)" />
+
+    <button onclick="hitungUsaha()">Hitung Usaha</button>
+    <div class="result" id="hasilUsaha"></div>
+
+    <!-- Kalkulator Daya -->
+    <h3>Daya (P = W / t atau P = F × v)</h3>
+    <label>Usaha (W) dalam Joule (J):</label>
+    <input type="number" id="usahaDaya" placeholder="Masukkan usaha (W)" />
+    
+    <label>Waktu (t) dalam detik (s):</label>
+    <input type="number" id="waktuDaya" placeholder="Masukkan waktu (t)" />
+
+    <label>Kecepatan (v) dalam meter/detik (m/s):</label>
+    <input type="number" id="kecepatanDaya" placeholder="Masukkan kecepatan (v)" />
+
+    <button onclick="hitungDaya()">Hitung Daya</button>
+    <div class="result" id="hasilDaya"></div>
+  </div>
+  <script>
+    function hitungHukumNewton() {
+      const F = parseFloat(document.getElementById("gaya").value);
+      const m = parseFloat(document.getElementById("massaFisika").value);
+      const a = parseFloat(document.getElementById("percepatan").value);
+      let hasil = "";
+
+      if (!isNaN(F) && !isNaN(m) && m !== 0) {
+        hasil += `Percepatan (a = F/m): ${(F/m).toFixed(2)} m/s²\n`;
+      }
+      if (!isNaN(F) && !isNaN(a) && a !== 0) {
+        hasil += `Massa (m = F/a): ${(F/a).toFixed(2)} kg\n`;
+      }
+      if (!isNaN(m) && !isNaN(a)) {
+        hasil += `Gaya (F = m*a): ${(m*a).toFixed(2)} N`;
+      }
+
+      if (hasil === "") {
+        hasil = "Masukkan minimal dua variabel untuk menghitung yang ketiga.";
+      }
+      document.getElementById("hasilFisika").innerText = hasil;
+    }
+    
+    function hitungGravitasi() {
+      const G = 6.67430e-11; // Konstanta gravitasi (N·m²/kg²)
+      const m1 = parseFloat(document.getElementById("massa1").value);
+      const m2 = parseFloat(document.getElementById("massa2").value);
+      const r = parseFloat(document.getElementById("jarak").value);
+
+      if (isNaN(m1) || isNaN(m2) || isNaN(r) || r === 0) {
+        document.getElementById("hasilGravitasi").innerText = "Masukkan nilai yang valid untuk massa dan jarak.";
+        return;
+      }
+
+      // Rumus gravitasi F = G × (m₁ × m₂) / r²
+      const gayaGravitasi = G * (m1 * m2) / (r * r);
+
+      document.getElementById("hasilGravitasi").innerText = `Gaya Gravitasi: ${gayaGravitasi.toExponential(4)} N`;
+    }
+    function hitungEnergiKinetik() {
+      const m = parseFloat(document.getElementById("massa").value);
+      const v = parseFloat(document.getElementById("kecepatan").value);
+
+      if (isNaN(m) || isNaN(v)) {
+        document.getElementById("hasilEnergi").innerText = "Masukkan nilai yang valid untuk massa dan kecepatan.";
+        return;
+      }
+
+      // Rumus energi kinetik Ek = ½ × m × v²
+      const energiKinetik = 0.5 * m * Math.pow(v, 2);
+
+      document.getElementById("hasilEnergi").innerText = `Energi Kinetik (Ek) = ${energiKinetik.toFixed(2)} Joule`;
+    }
+    function hitungHukumOhm() {
+      const V = parseFloat(document.getElementById("tegangan").value);
+      const I = parseFloat(document.getElementById("arus").value);
+      const R = parseFloat(document.getElementById("hambatan").value);
+
+      let hasil = "";
+
+      if (!isNaN(V) && !isNaN(I) && I !== 0) {
+        hasil = `Hambatan (R = V/I): ${(V / I).toFixed(2)} Ω`;
+      } else if (!isNaN(V) && !isNaN(R) && R !== 0) {
+        hasil = `Arus (I = V/R): ${(V / R).toFixed(2)} A`;
+      } else if (!isNaN(I) && !isNaN(R) && R !== 0) {
+        hasil = `Tegangan (V = I × R): ${(I * R).toFixed(2)} V`;
+      } else {
+        hasil = "Masukkan minimal dua variabel untuk menghitung yang ketiga.";
+      }
+
+      document.getElementById("hasilOhm").innerText = hasil;
+    }
+    function hitungUsaha() {
+      const F = parseFloat(document.getElementById("gayaUsaha").value);
+      const d = parseFloat(document.getElementById("jarakUsaha").value);
+      let hasil = "";
+
+      if (!isNaN(F) && !isNaN(d)) {
+        const W = F * d;
+        hasil = `Usaha (W = F × d): ${W.toFixed(2)} Joule`;
+      } else {
+        hasil = "Masukkan nilai gaya dan jarak yang valid.";
+      }
+
+      document.getElementById("hasilUsaha").innerText = hasil;
+    }
+
+    function hitungDaya() {
+      const W = parseFloat(document.getElementById("usahaDaya").value);
+      const t = parseFloat(document.getElementById("waktuDaya").value);
+      const v = parseFloat(document.getElementById("kecepatanDaya").value);
+      let hasil = "";
+
+      if (!isNaN(W) && !isNaN(t) && t !== 0) {
+        // Daya dengan rumus P = W / t
+        const P = W / t;
+        hasil = `Daya (P = W / t): ${P.toFixed(2)} Watt`;
+      } else if (!isNaN(F) && !isNaN(v)) {
+        // Daya dengan rumus P = F × v
+        const P2 = F * v;
+        hasil = `Daya (P = F × v): ${P2.toFixed(2)} Watt`;
+      } else {
+        hasil = "Masukkan nilai usaha dan waktu atau gaya dan kecepatan yang valid.";
+      }
+
+      document.getElementById("hasilDaya").innerText = hasil;
+    }
+  </script>
+
+</body>
+</html>

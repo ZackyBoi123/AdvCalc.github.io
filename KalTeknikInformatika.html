@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpulan Kalkulator Informatika </title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f5f5; 
+    }
+    h2 { 
+        background: #222; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    .calc { 
+        background: white; 
+        padding: 15px; 
+        margin-bottom: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        margin: 5px 0; padding: 8px; 
+        width: 100%; 
+    }
+    button { 
+        margin-top: 10px; 
+        padding: 8px 15px; 
+        background: #007BFF; 
+        color: white; 
+        border: none; border-radius: 5px; 
+        cursor: pointer; 
+    }
+    .result { 
+        margin-top: 10px; 
+        font-weight: bold; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kumpulan Kalkulator Informatika</h1>
+
+<div>
+  
+  <!-- Konversi Bilangan Otomatis (Live) -->
+  <div class="calc">
+    <h2>20. Konversi Bilangan Otomatis (Live)</h2>
+    
+    <label>Masukkan Bilangan:
+      <input type="text" id="inputLive" placeholder="Contoh: 7F atau 1010 atau 123">
+    </label>
+  
+    <label>Dari Basis:
+      <select id="basisLive">
+        <option value="2">Biner</option>
+        <option value="8">Oktal</option>
+        <option value="10" selected>Desimal</option>
+        <option value="16">Heksadesimal</option>
+      </select>
+    </label>
+  
+    <table style="width:100%; margin-top:10px;">
+      <tr><th>Basis</th><th>Hasil</th></tr>
+      <tr><td>Biner</td><td id="liveBin">-</td></tr>
+      <tr><td>Oktal</td><td id="liveOct">-</td></tr>
+      <tr><td>Desimal</td><td id="liveDec">-</td></tr>
+      <tr><td>Heksadesimal</td><td id="liveHex">-</td></tr>
+    </table>
+  </div>
+  
+
+    <h3>Konversi Satuan Data</h3>
+    <label>Nilai: <input type="number" id="nilaiData"></label>
+    <select id="satuanAsal">
+      <option value="KB">KB</option>
+      <option value="MB">MB</option>
+      <option value="GB">GB</option>
+      <option value="TB">TB</option>
+    </select>
+    <select id="satuanTujuan">
+      <option value="KB">KB</option>
+      <option value="MB">MB</option>
+      <option value="GB">GB</option>
+      <option value="TB">TB</option>
+    </select>
+    <button onclick="konversiData()">Konversi</button>
+    <div class="result" id="hasilData"></div>
+  </div>
+
+  <script>
+
+    function konversiBilangan() {
+      const angka = parseInt(document.getElementById("angkaInformatika").value);
+      if (isNaN(angka)) {
+        document.getElementById("hasilKonversi").innerText = "Masukkan angka desimal valid.";
+        return;
+      }
+      const biner = angka.toString(2);
+      const oktal = angka.toString(8);
+      const heksa = angka.toString(16).toUpperCase();
+      document.getElementById("hasilKonversi").innerText = `Biner: ${biner} | Oktal: ${oktal} | Heksadesimal: ${heksa}`;
+    }
+
+    function konversiData() {
+      const nilai = parseFloat(document.getElementById("nilaiData").value);
+      const asal = document.getElementById("satuanAsal").value;
+      const tujuan = document.getElementById("satuanTujuan").value;
+      const satuan = { KB: 1, MB: 1024, GB: 1024**2, TB: 1024**3 };
+      if (isNaN(nilai)) {
+        document.getElementById("hasilData").innerText = "Masukkan nilai yang valid.";
+        return;
+      }
+      const nilaiKB = nilai * satuan[asal];
+      const hasil = nilaiKB / satuan[tujuan];
+      document.getElementById("hasilData").innerText = `${nilai} ${asal} = ${hasil.toFixed(4)} ${tujuan}`;
+    }
+    
+document.getElementById("inputLive").addEventListener("input", konversiLive);
+document.getElementById("basisLive").addEventListener("change", konversiLive);
+
+function konversiLive() {
+  const nilai = document.getElementById("inputLive").value.trim();
+  const dari = parseInt(document.getElementById("basisLive").value);
+  let desimal;
+
+  try {
+    desimal = parseInt(nilai, dari);
+    if (isNaN(desimal)) throw "Invalid";
+  } catch {
+    updateLive("-", "-", "-", "-");
+    return;
+  }
+
+  updateLive(
+    desimal.toString(2),
+    desimal.toString(8),
+    desimal.toString(10),
+    desimal.toString(16).toUpperCase()
+  );
+}
+
+function updateLive(bin, oct, dec, hex) {
+  document.getElementById("liveBin").innerText = bin;
+  document.getElementById("liveOct").innerText = oct;
+  document.getElementById("liveDec").innerText = dec;
+  document.getElementById("liveHex").innerText = hex;
+}
+
+  </script>
+
+</body>
+</html>
