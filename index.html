@@ -17,20 +17,65 @@
         font-size: 20px;
         padding: 20px;
     }
+    .dropdown button{
+        background-color: hsl(0, 0%, 80%);
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+    }
+    .dropdown a{
+        display: block;
+        color: black;
+        text-decoration: none;
+        padding: 10px 15px;
+    }
+    .dropdown .content{
+        display: none;
+        position: absolute;
+        background-color: hsl(0, 0%, 95%);
+        min-width: 100px;
+        box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.795);
+    }
+    .dropdown:hover .content{
+        display: block;
+    }
+    .dropdown:hover button{
+        background-color: hsl(0, 0%, 70%);
+    }
+    .dropdown a:hover{
+        background-color: hsl(0, 0%, 90%);
+    }
+    .dropdown{
+        display: inline-block;
+    }
     </style>
 </head>
 <body>
-    <ul class="nav">
+    <!-- <ul class="nav">
         <li><a href="KalFisika.html">Kalkulator Fisika</a></li>
         <li><a href="KalKimia.html">Kalkulator Kimia</a></li>
         <li><a href="KalMatematika.html">Kalkulator Matematika</a></li>
         <li><a href="KalTeknikInformatika.html">Kalkulator Teknik Informatika</a></li>
         <li><a href="KalEkonomiKeuangan.html">Kalkulator Ekonomi & Keuangan Dasar</a></li>
         <li><a href="KalGeografiLingkungan.html">Kalkulator Geografi Lingkungan</a></li>
-    </ul>
+    </ul> -->
 
-    <p>Welcome !
-    hello from github</p>
+    
+    <div class="dropdown">
+        <button>=</button>
+        <div class="content">
+            <a href="index.html">Home</a>
+            <a href="KalFisika.html">Fisika</a>
+            <a href="KalKimia.html">kimia</a>
+            <a href="KalMatematika.html">Matematika</a>
+            <a href="KalTeknikInformatika.html">Teknikk Informatika</a>
+            <a href="KalEkonomiKeuangan.html">Ekonomi Keuangan</a>
+            <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
+        </div>
+    </div>
+
+    <p>Welcome !</p>
 
 </body>
 </html>
