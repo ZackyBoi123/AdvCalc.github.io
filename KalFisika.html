@@ -11,61 +11,94 @@
     input, select, textarea { margin: 5px 0; padding: 8px; width: 100%; }
     button { margin-top: 10px; padding: 8px 15px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
     .result { margin-top: 10px; font-weight: bold; white-space: pre-wrap; }
-    .dropdown button{
-        background-color: hsl(0, 0%, 80%);
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-    }
-    .dropdown a{
-        display: block;
-        color: black;
-        text-decoration: none;
-        padding: 10px 15px;
-    }
-    .dropdown .content{
-        display: none;
-        position: absolute;
-        background-color: hsl(0, 0%, 95%);
-        min-width: 100px;
-        box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.795);
-    }
-    .dropdown:hover .content{
-        display: block;
-    }
-    .dropdown:hover button{
-        background-color: hsl(0, 0%, 70%);
-    }
-    .dropdown a:hover{
-        background-color: hsl(0, 0%, 90%);
-    }
-    .dropdown{
-        display: inline-block;
-    }
+    .navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
   </style>
 </head>
 <body>
 
-  <div class="dropdown">
-    <button>=</button>
-    <div class="content">
-        <a href="index.html">Home</a>
+  <div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">Dropdown
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="KalKimia.html">Kimia</a>
         <a href="KalFisika.html">Fisika</a>
-        <a href="KalKimia.html">kimia</a>
         <a href="KalMatematika.html">Matematika</a>
-        <a href="KalTeknikInformatika.html">Teknikk Informatika</a>
-        <a href="KalEkonomiKeuangan.html">Ekonomi Keuangan</a>
+        <a href="KalTeknikInformatika.html">Informatika</a>
+        <a href="KalEkonomiKeuangan.html">Ekonomi</a>
         <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
-    </div>
-</div>
+      </div>
+      </div> 
+    <a href="index.html">Home</a>
+    <a href="#news">News</a>
+  </div>
 
-  <h1>Kumpulan Kalkulator Edukasi</h1>
+  <h1>Kumpulan Kalkulator Fisika</h1>
 
   <!-- Kalkulator Fisika -->
   <div class="calc">
-    <h2>Kalkulator Fisika</h2>
-    <h3>Hukum Newton</h3>
+    <h2>1. Kalkulator Hukum Newton</h2>
     <label>Gaya (N): <input type="number" id="gaya"></label>
     <label>Massa (kg): <input type="number" id="massaFisika"></label>
     <label>Percepatan (m/s²): <input type="number" id="percepatan"></label>
@@ -73,10 +106,8 @@
     <div class="result" id="hasilFisika"></div>
   </div>
 
-  <h1>Kalkulator Gravitasi</h1>
-
   <div class="calc">
-    <h2>Hitung Gaya Gravitasi antar dua benda</h2>
+    <h2>2. Kalkulator Gravitasi</h2>
     <label>Massa benda pertama (m₁) (kg):</label>
     <input type="number" id="massa1" placeholder="Masukkan massa m₁ (kg)" />
 
@@ -91,10 +122,8 @@
     <div class="result" id="hasilGravitasi"></div>
   </div>
 
-  <h1>Kalkulator Energi Kinetik</h1>
-
   <div class="calc">
-    <h2>Hitung Energi Kinetik (Ek = ½ × m × v²)</h2>
+    <h2>3. Kalkulator Energi Kinetik</h2>
     <label>Massa (m) (kg):</label>
     <input type="number" id="massa" placeholder="Masukkan massa (kg)" />
 
@@ -106,10 +135,8 @@
     <div class="result" id="hasilEnergi"></div>
   </div>
 
-  <h1>Kalkulator Hukum Ohm</h1>
-
   <div class="calc">
-    <h2>Hitung Tegangan, Arus, atau Hambatan</h2>
+    <h2>4. Kalkulator Hukum Ohm</h2>
     <label>Tegangan (V):</label>
     <input type="number" id="tegangan" placeholder="Masukkan tegangan (V)" />
 
@@ -124,10 +151,8 @@
     <div class="result" id="hasilOhm"></div>
   </div>
 
-  <h1>Kalkulator Usaha dan Daya</h1>
-
   <div class="calc">
-    <h2>Hitung Usaha dan Daya</h2>
+    <h2>5. Kalkulator Usaha dan Daya</h2>
 
     <!-- Kalkulator Usaha -->
     <h3>Usaha (W = F × d)</h3>
@@ -261,6 +286,21 @@
 
       document.getElementById("hasilDaya").innerText = hasil;
     }
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
   </script>
 
 </body>
