@@ -1,298 +1,305 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kumpulan Kalkulator Kimia</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body { 
-        font-family: Arial, sans-serif; 
-        padding: 20px; 
-        background: #f5f5f5; 
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Kalkulator Kimia</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background-image: url('background.jpg'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        h2 { 
+            background: #222; 
+            color: white; 
+            padding: 10px; 
+            border-radius: 5px; 
+        }
+        .calc { 
+            background: white; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+        }
+        input, select { 
+            margin: 5px 0; 
+            padding: 8px; 
+            width: 100%; 
+        }
+        button { 
+            margin-top: 10px; 
+            padding: 8px 15px; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .result { 
+          margin-top: 10px; 
+          font-weight: bold; 
+        }
+        .navbar {
+      overflow: hidden;
+      background-color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      border: black;
+      border-radius: 15px;
     }
-    h2 { 
-        background: #222; 
-        color: white; 
-        padding: 10px; 
-        border-radius: 5px; 
+
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 15px 5px;
+      text-decoration: none;
     }
-    .calc { 
-        background: white; 
-        padding: 15px; 
-        margin-bottom: 20px; 
-        border-radius: 10px; 
-        box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+
+    .dropdown {
+      float: left;
+      overflow: hidden;
+      padding: -1px;
+      text-align: center;    
     }
-    input, select { 
-        margin: 5px 0; 
-        padding: 8px; 
-        width: 100%; 
+
+    .dropdown .dropbtn {
+      cursor: pointer;
+      font-size: 16px;  
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
     }
-    button { 
-        margin-top: 10px; 
-        padding: 8px 15px; 
-        background: #007BFF; 
-        color: white; 
-        border: none; 
-        border-radius: 5px; 
-        cursor: pointer; 
+
+    .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+      background-color: red;
     }
-    .result { 
-      margin-top: 10px; 
-      font-weight: bold; 
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
     }
-.navbar { 
-  overflow: hidden;
-  background-color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-.navbar a{
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
 
-.dropdown .dropbtn {
-  cursor: pointer;
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+    .show {
+      display: block;
+    }
+      </style>
+    </head>
+    <body>
 
-.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-  background-color: red;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.show {
-  display: block;
-}
-  </style>
-</head>
-<body>
-
-  <div class="navbar">
-    <div class="dropdown">
-      <button class="dropbtn" onclick="myFunction()">Dropdown
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content" id="myDropdown">
-        <a href="KalKimia.html">Kimia</a>
-        <a href="KalFisika.html">Fisika</a>
-        <a href="KalMatematika.html">Matematika</a>
-        <a href="KalTeknikInformatika.html">Informatika</a>
-        <a href="KalEkonomiKeuangan.html">Ekonomi</a>
-        <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
+      <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">☰ 
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+              <a href="KalKimia.html">Kimia</a>
+              <a href="KalFisika.html">Fisika</a>
+              <a href="KalMatematika.html">Matematika</a>
+              <a href="KalTeknikInformatika.html">Informatika</a>
+              <a href="KalEkonomiKeuangan.html">Ekonomi</a>
+              <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
+            </div>
+            </div> 
+        <a href="index.html">Calcify</a>  
       </div>
-      </div> 
-    <a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
-    <a href="#news">News</a>
-  </div>
 
-  <h1>Kumpulan Kalkulator Kimia</h1>
+      <h1>Kumpulan Kalkulator Kimia</h1>
 
-  <!-- Kalkulator Kimia -->
-  <div class="calc">
-    <h2>1. Kalkulator -</h2>
-    <label>Massa molar (g/mol): <input type="number" id="massaMolar"></label>
-    <label>Mol: <input type="number" id="jumlahMol"></label>
-    <button onclick="molKeGram()">Konversi Mol → Gram</button>
-    <button onclick="gramKeMol()">Konversi Gram → Mol</button>
-    <div class="result" id="hasilMolGram"></div>
-  </div>
+      <!-- Kalkulator Kimia -->
+      <div class="calc">
+        <h2>1. Kalkulator Kimia</h2>
+        <label>Massa molar (g/mol): <input type="number" id="massaMolar"></label>
+        <label>Mol: <input type="number" id="jumlahMol"></label>
+        <button onclick="molKeGram()">Konversi Mol → Gram</button>
+        <button onclick="gramKeMol()">Konversi Gram → Mol</button>
+        <div class="result" id="hasilMolGram"></div>
+      </div>
 
-  <div class="calc">
-    <h2>2. Hukum -</h2>
-    <label>Mol (untuk Konsentrasi): <input type="number" id="molKons"></label>
-    <label>Volume (L): <input type="number" id="volumeL"></label>
-    <button onclick="hitungKonsentrasi()">Hitung Konsentrasi (M)</button>
-    <div class="result" id="hasilKonsentrasi"></div>
-</div>
+      <!-- Kalkulator Logaritma -->
+      <div class="calc">
+        <h2>2. Kalkulator Logaritma</h2>
+        <label>Mol (untuk Konsentrasi): <input type="number" id="molKons"></label>
+        <label>Volume (L): <input type="number" id="volumeL"></label>
+        <button onclick="hitungKonsentrasi()">Hitung Konsentrasi (M)</button>
+        <div class="result" id="hasilKonsentrasi"></div>
+    </div>
 
-<div class="calc">
-    <h2>3. Hukum -</h2>
-    <label>pH atau pOH: <input type="number" id="nilaiPH"></label>
-    <select id="jenisPH">
-      <option value="ph">pH</option>
-      <option value="poh">pOH</option>
-    </select>
-    <button onclick="hitungPH()">Hitung pH/pOH</button>
-    <div class="result" id="hasilPH"></div>
-  </div>
-  
-  <div class="calc">
-    <h2>4. Hukum Boyle (P1V1 = P2V2)</h2>
-    <label>P1: <input type="number" id="p1"></label>
-    <label>V1: <input type="number" id="v1"></label>
-    <label>P2: <input type="number" id="p2"></label>
-    <button onclick="hitungV2()">Hitung V2</button>
-    <div class="result" id="hasilBoyle"></div>
-  </div>
+    <div class="calc">
+        <h2>3. Hukum -</h2>
+        <label>pH atau pOH: <input type="number" id="nilaiPH"></label>
+        <select id="jenisPH">
+          <option value="ph">pH</option>
+          <option value="poh">pOH</option>
+        </select>
+        <button onclick="hitungPH()">Hitung pH/pOH</button>
+        <div class="result" id="hasilPH"></div>
+      </div>
+      
+      <!-- Kalkulator Hukum Boyle -->
+      <div class="calc">
+        <h2>4. Kalkulator Hukum Boyle</h2>
+        <label>P1: <input type="number" id="p1"></label>
+        <label>V1: <input type="number" id="v1"></label>
+        <label>P2: <input type="number" id="p2"></label>
+        <button onclick="hitungV2()">Hitung V2</button>
+        <div class="result" id="hasilBoyle"></div>
+      </div>
 
-  <div class="calc">
-    <h2>5. Hukum Charles (V1/T1 = V2/T2)</h2>
-    <label>V1: <input type="number" id="v1c"></label>
-    <label>T1 (K): <input type="number" id="t1c"></label>
-    <label>T2 (K): <input type="number" id="t2c"></label>
-    <button onclick="hitungCharles()">Hitung V2</button>
-    <div class="result" id="hasilCharles"></div>
-</div>
+      <!-- Kalkulator Hukum Charles -->
+      <div class="calc">
+        <h2>5. Kalkulator Hukum Charles</h2>
+        <label>V1: <input type="number" id="v1c"></label>
+        <label>T1 (K): <input type="number" id="t1c"></label>
+        <label>T2 (K): <input type="number" id="t2c"></label>
+        <button onclick="hitungCharles()">Hitung V2</button>
+        <div class="result" id="hasilCharles"></div>
+    </div>
 
-<div class="calc">
-    <h2>6. Konversi Suhu</h2>
-    <label>Nilai suhu: <input type="number" id="nilaiSuhu"></label>
-    <select id="tipeSuhu">
-      <option value="cToK">Celsius ke Kelvin</option>
-      <option value="kToC">Kelvin ke Celsius</option>
-      <option value="cToF">Celsius ke Fahrenheit</option>
-      <option value="fToC">Fahrenheit ke Celsius</option>
-    </select>
-    <button onclick="konversiSuhu()">Konversi</button>
-    <div class="result" id="hasilSuhu"></div>
-  </div>
+    <!-- Kalkulator Konversi Suhu -->
+    <div class="calc">
+        <h2>6. Kalkulator Konversi Suhu</h2>
+        <label>Nilai suhu: <input type="number" id="nilaiSuhu"></label>
+        <select id="tipeSuhu">
+          <option value="cToK">Celsius ke Kelvin</option>
+          <option value="kToC">Kelvin ke Celsius</option>
+          <option value="cToF">Celsius ke Fahrenheit</option>
+          <option value="fToC">Fahrenheit ke Celsius</option>
+        </select>
+        <button onclick="konversiSuhu()">Konversi</button>
+        <div class="result" id="hasilSuhu"></div>
+      </div>
 
-  <script>
-    function molKeGram() {
-      const mol = parseFloat(document.getElementById("jumlahMol").value);
-      const massaMolar = parseFloat(document.getElementById("massaMolar").value);
-      if (!isNaN(mol) && !isNaN(massaMolar)) {
-        const gram = mol * massaMolar;
-        document.getElementById("hasilMolGram").innerText = `Massa: ${gram.toFixed(4)} gram`;
-      } else {
-        document.getElementById("hasilMolGram").innerText = "Masukkan nilai mol dan massa molar yang valid.";
-      }
-    }
-
-    function gramKeMol() {
-      const mol = parseFloat(document.getElementById("jumlahMol").value);
-      const massaMolar = parseFloat(document.getElementById("massaMolar").value);
-      if (!isNaN(mol) && !isNaN(massaMolar) && massaMolar !== 0) {
-        const hasilMol = mol / massaMolar;
-        document.getElementById("hasilMolGram").innerText = `Mol: ${hasilMol.toFixed(4)} mol`;
-      } else {
-        document.getElementById("hasilMolGram").innerText = "Masukkan nilai massa dan massa molar yang valid.";
-      }
-    }
-
-    function hitungKonsentrasi() {
-      const mol = parseFloat(document.getElementById("molKons").value);
-      const volume = parseFloat(document.getElementById("volumeL").value);
-      if (!isNaN(mol) && !isNaN(volume) && volume !== 0) {
-        const kons = mol / volume;
-        document.getElementById("hasilKonsentrasi").innerText = `Konsentrasi: ${kons.toFixed(4)} M`;
-      } else {
-        document.getElementById("hasilKonsentrasi").innerText = "Masukkan nilai mol dan volume yang valid.";
-      }
-    }
-
-    function hitungPH() {
-      const nilai = parseFloat(document.getElementById("nilaiPH").value);
-      const jenis = document.getElementById("jenisPH").value;
-      if (!isNaN(nilai)) {
-        if (jenis === "ph") {
-          const poh = 14 - nilai;
-          document.getElementById("hasilPH").innerText = `pOH: ${poh.toFixed(2)}`;
-        } else {
-          const ph = 14 - nilai;
-          document.getElementById("hasilPH").innerText = `pH: ${ph.toFixed(2)}`;
+      <script>
+        function molKeGram() {
+          const mol = parseFloat(document.getElementById("jumlahMol").value);
+          const massaMolar = parseFloat(document.getElementById("massaMolar").value);
+          if (!isNaN(mol) && !isNaN(massaMolar)) {
+            const gram = mol * massaMolar;
+            document.getElementById("hasilMolGram").innerText = `Massa: ${gram.toFixed(4)} gram`;
+          } else {
+            document.getElementById("hasilMolGram").innerText = "Masukkan nilai mol dan massa molar yang valid.";
+          }
         }
-      } else {
-        document.getElementById("hasilPH").innerText = "Masukkan nilai pH atau pOH yang valid.";
-      }
-    }
 
-    function hitungV2() {
-      const p1 = parseFloat(document.getElementById("p1").value);
-      const v1 = parseFloat(document.getElementById("v1").value);
-      const p2 = parseFloat(document.getElementById("p2").value);
-      if (!isNaN(p1) && !isNaN(v1) && !isNaN(p2) && p2 !== 0) {
-        const v2 = (p1 * v1) / p2;
-        document.getElementById("hasilBoyle").innerText = `V2: ${v2.toFixed(4)}`;
-      } else {
-        document.getElementById("hasilBoyle").innerText = "Masukkan nilai yang valid untuk P1, V1, dan P2.";
-      }
-    }
-
-    function hitungCharles() {
-      const v1 = parseFloat(document.getElementById("v1c").value);
-      const t1 = parseFloat(document.getElementById("t1c").value);
-      const t2 = parseFloat(document.getElementById("t2c").value);
-      if (!isNaN(v1) && !isNaN(t1) && !isNaN(t2) && t1 !== 0) {
-        const v2 = (v1 * t2) / t1;
-        document.getElementById("hasilCharles").innerText = `V2: ${v2.toFixed(4)}`;
-      } else {
-        document.getElementById("hasilCharles").innerText = "Masukkan nilai yang valid untuk V1, T1, dan T2.";
-      }
-    }
-
-    function konversiSuhu() {
-      const nilai = parseFloat(document.getElementById("nilaiSuhu").value);
-      const tipe = document.getElementById("tipeSuhu").value;
-      let hasil = "";
-      if (!isNaN(nilai)) {
-        switch (tipe) {
-          case "cToK": hasil = `${(nilai + 273.15).toFixed(2)} K`; break;
-          case "kToC": hasil = `${(nilai - 273.15).toFixed(2)} °C`; break;
-          case "cToF": hasil = `${((nilai * 9/5) + 32).toFixed(2)} °F`; break;
-          case "fToC": hasil = `${((nilai - 32) * 5/9).toFixed(2)} °C`; break;
+        function gramKeMol() {
+          const mol = parseFloat(document.getElementById("jumlahMol").value);
+          const massaMolar = parseFloat(document.getElementById("massaMolar").value);
+          if (!isNaN(mol) && !isNaN(massaMolar) && massaMolar !== 0) {
+            const hasilMol = mol / massaMolar;
+            document.getElementById("hasilMolGram").innerText = `Mol: ${hasilMol.toFixed(4)} mol`;
+          } else {
+            document.getElementById("hasilMolGram").innerText = "Masukkan nilai massa dan massa molar yang valid.";
+          }
         }
-        document.getElementById("hasilSuhu").innerText = `Hasil: ${hasil}`;
-      } else {
-        document.getElementById("hasilSuhu").innerText = "Masukkan nilai suhu yang valid.";
+
+        function hitungKonsentrasi() {
+          const mol = parseFloat(document.getElementById("molKons").value);
+          const volume = parseFloat(document.getElementById("volumeL").value);
+          if (!isNaN(mol) && !isNaN(volume) && volume !== 0) {
+            const kons = mol / volume;
+            document.getElementById("hasilKonsentrasi").innerText = `Konsentrasi: ${kons.toFixed(4)} M`;
+          } else {
+            document.getElementById("hasilKonsentrasi").innerText = "Masukkan nilai mol dan volume yang valid.";
+          }
+        }
+
+        function hitungPH() {
+          const nilai = parseFloat(document.getElementById("nilaiPH").value);
+          const jenis = document.getElementById("jenisPH").value;
+          if (!isNaN(nilai)) {
+            if (jenis === "ph") {
+              const poh = 14 - nilai;
+              document.getElementById("hasilPH").innerText = `pOH: ${poh.toFixed(2)}`;
+            } else {
+              const ph = 14 - nilai;
+              document.getElementById("hasilPH").innerText = `pH: ${ph.toFixed(2)}`;
+            }
+          } else {
+            document.getElementById("hasilPH").innerText = "Masukkan nilai pH atau pOH yang valid.";
+          }
+        }
+
+        function hitungV2() {
+          const p1 = parseFloat(document.getElementById("p1").value);
+          const v1 = parseFloat(document.getElementById("v1").value);
+          const p2 = parseFloat(document.getElementById("p2").value);
+          if (!isNaN(p1) && !isNaN(v1) && !isNaN(p2) && p2 !== 0) {
+            const v2 = (p1 * v1) / p2;
+            document.getElementById("hasilBoyle").innerText = `V2: ${v2.toFixed(4)}`;
+          } else {
+            document.getElementById("hasilBoyle").innerText = "Masukkan nilai yang valid untuk P1, V1, dan P2.";
+          }
+        }
+
+        function hitungCharles() {
+          const v1 = parseFloat(document.getElementById("v1c").value);
+          const t1 = parseFloat(document.getElementById("t1c").value);
+          const t2 = parseFloat(document.getElementById("t2c").value);
+          if (!isNaN(v1) && !isNaN(t1) && !isNaN(t2) && t1 !== 0) {
+            const v2 = (v1 * t2) / t1;
+            document.getElementById("hasilCharles").innerText = `V2: ${v2.toFixed(4)}`;
+          } else {
+            document.getElementById("hasilCharles").innerText = "Masukkan nilai yang valid untuk V1, T1, dan T2.";
+          }
+        }
+
+        function konversiSuhu() {
+          const nilai = parseFloat(document.getElementById("nilaiSuhu").value);
+          const tipe = document.getElementById("tipeSuhu").value;
+          let hasil = "";
+          if (!isNaN(nilai)) {
+            switch (tipe) {
+              case "cToK": hasil = `${(nilai + 273.15).toFixed(2)} K`; break;
+              case "kToC": hasil = `${(nilai - 273.15).toFixed(2)} °C`; break;
+              case "cToF": hasil = `${((nilai * 9/5) + 32).toFixed(2)} °F`; break;
+              case "fToC": hasil = `${((nilai - 32) * 5/9).toFixed(2)} °C`; break;
+            }
+            document.getElementById("hasilSuhu").innerText = `Hasil: ${hasil}`;
+          } else {
+            document.getElementById("hasilSuhu").innerText = "Masukkan nilai suhu yang valid.";
+          }
+        }
+
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+      var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
       }
     }
-    /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+      </script>
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
-}
-  </script>
-
-</body>
-</html>
+    </body>
+    </html>
