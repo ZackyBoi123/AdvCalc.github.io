@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculating</title>
+    <title>Advanced Calc</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     .navbar {
   overflow: hidden;
   background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
+  border: black;
+  border-radius: 15px;
 }
 
 .navbar a {
@@ -17,13 +19,15 @@
   font-size: 16px;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 5px;
   text-decoration: none;
 }
 
 .dropdown {
   float: left;
   overflow: hidden;
+  padding: -1px;
+  text-align: center;    
 }
 
 .dropdown .dropbtn {
@@ -39,13 +43,13 @@
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-  background-color: red;
+  background-color: hsla(0, 100%, 50%, 0.637);
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #f9f9f9;                                                        
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -67,14 +71,30 @@
 .show {
   display: block;
 }
+
+body{
+    background-image: url('background.jpg'); 
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+}
+.link{
+    text-decoration: none;
+}
+
+ol a:visited {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
     </style>
 </head>
 <body>
     
     <div class="navbar">
         <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">☰ Open Calculator
-              <i class="fa fa-caret-down"></i>
+            <button class="dropbtn" onclick="myFunction()">☰ 
             </button>
             <div class="dropdown-content" id="myDropdown">
               <a href="KalKimia.html">Kimia</a>
@@ -85,33 +105,28 @@
               <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
             </div>
             </div> 
-        <a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
-        <a href="#news">News</a>
+        <a href="index.html">Calcify</a>  
       </div>
 
     <p>Website ini merupakan beranda utama dari kumpulan berbagai kalkulator tematik yang dirancang untuk membantu pengguna melakukan perhitungan di berbagai bidang ilmu. Melalui menu navigasi yang ditampilkan secara horizontal dengan latar berwarna kuning, pengguna dapat mengakses enam fitur utama berikut:
 
     <ol>
-        <li><b>Kalkulator Fisika</b> – Menyediakan alat bantu untuk menghitung rumus-rumus fisika seperti gaya, percepatan, energi, dan lainnya.</li>
-        <li><b>Kalkulator Kimia</b> – Digunakan untuk perhitungan kimia seperti massa molar, hukum gas ideal, atau konsentrasi larutan.
-        </li>
-        <li><b>Kalkulator Matematika</b> – Mencakup fungsi kalkulasi matematika dasar, persamaan kuadrat, geometri bangun ruang, hingga statistika.</li>
-        <li><b>Kalkulator Teknik Informatika</b> – Menawarkan fitur seperti konversi bilangan antar basis (biner, oktal, desimal, heksadesimal) dan konversi satuan data digital.</li>
-        <li><b>Kalkulator Ekonomi & Keuangan Dasar</b> – Cocok untuk menghitung bunga, keuntungan, depresiasi, atau konversi mata uang sederhana.</li>
-        <li><b>Kalkulator Geografi Lingkungan</b> – Digunakan untuk menghitung hal-hal terkait lingkungan dan geografi seperti kepadatan penduduk, curah hujan rata-rata, dll.</li>
+        <li><b><a href="KalFisika.html" class="link">Kalkulator Fisika</a></b> – Menyediakan alat bantu untuk menghitung rumus-rumus fisika seperti gaya, percepatan, energi, dan lainnya.</li>
+        <li><b><a href="KalKimia.html" class="link">Kalkulator Kimia</a></b> – Digunakan untuk perhitungan kimia seperti massa molar, atau konsentrasi larutan. </li>
+        <li><b><a href="KalMatematika.html" class="link">Kalkulator Matematika</a></b> – Mencakup fungsi kalkulasi matematika dasar, persamaan kuadrat, geometri bangun ruang, hingga statistika.</li>
+        <li><b><a href="KalTeknikInformatika.html" class="link">Kalkulator Teknik Informatika</a></b> – Menawarkan fitur seperti konversi bilangan antar basis (biner, oktal, desimal, heksadesimal) dan konversi satuan data digital.</li>
+        <li><b><a href="KalEkonomiKeuangan.html" class="link">Kalkulator Ekonomi & Keuangan Dasar</a></b> – Cocok untuk menghitung bunga, keuntungan, depresiasi, atau konversi mata uang sederhana.</li>
+        <li><b><a href="KalGeografiLingkungan.html" class="link">Kalkulator Geografi Lingkungan</a></b> – Digunakan untuk menghitung hal-hal terkait lingkungan dan geografi seperti kepadatan penduduk, dll.</li>
     </ol>
 
     Seluruh kalkulator disajikan dalam halaman-halaman terpisah yang bisa diakses dengan mudah dari halaman utama ini.
     </p>
 
     <script>
-        /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
   var myDropdown = document.getElementById("myDropdown");
