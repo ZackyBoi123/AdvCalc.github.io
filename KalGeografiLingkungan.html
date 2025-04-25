@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kumpulan Kalkulator Geografi Lingkungan</title>
+  <title>Kalkulator Geografi Lingkungan</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body { 
         font-family: Arial, sans-serif; 
         padding: 20px; 
-        background: #f5f5f5; 
+        background-image: url('background.jpg'); 
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
     }
     h2 { 
         background: #222; 
@@ -45,6 +48,8 @@
   overflow: hidden;
   background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
+  border: black;
+  border-radius: 15px;
 }
 
 .navbar a {
@@ -52,13 +57,15 @@
   font-size: 16px;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 5px;
   text-decoration: none;
 }
 
 .dropdown {
   float: left;
   overflow: hidden;
+  padding: -1px;
+  text-align: center;    
 }
 
 .dropdown .dropbtn {
@@ -108,20 +115,18 @@
 
   <div class="navbar">
     <div class="dropdown">
-      <button class="dropbtn" onclick="myFunction()">Dropdown
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content" id="myDropdown">
-        <a href="KalKimia.html">Kimia</a>
-        <a href="KalFisika.html">Fisika</a>
-        <a href="KalMatematika.html">Matematika</a>
-        <a href="KalTeknikInformatika.html">Informatika</a>
-        <a href="KalEkonomiKeuangan.html">Ekonomi</a>
-        <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
-      </div>
-      </div> 
-    <a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
-    <a href="#news">News</a>
+        <button class="dropbtn" onclick="myFunction()">☰ 
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+          <a href="KalKimia.html">Kimia</a>
+          <a href="KalFisika.html">Fisika</a>
+          <a href="KalMatematika.html">Matematika</a>
+          <a href="KalTeknikInformatika.html">Informatika</a>
+          <a href="KalEkonomiKeuangan.html">Ekonomi</a>
+          <a href="KalGeografiLingkungan.html">Geografi Lingkungan</a>
+        </div>
+        </div> 
+    <a href="index.html">Calcify</a>  
   </div>
 
   <h1>Kumpulan Kalkulator Geografi Lingkungan</h1>
@@ -180,7 +185,7 @@
 
 <!-- Kalkulator Jarak Geografis -->
 <div class="calc">
-  <h2>4. Kalkulator Jarak Geografis (Haversine)</h2>
+  <h2>4. Kalkulator Jarak Geografis</h2>
   <label>Latitude Titik 1 (°): <input type="number" id="lat1"></label>
   <label>Longitude Titik 1 (°): <input type="number" id="lon1"></label>
   <label>Latitude Titik 2 (°): <input type="number" id="lat2"></label>
@@ -304,13 +309,10 @@ function hitungJarakGeografis() {
   }
 }
 
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
   var myDropdown = document.getElementById("myDropdown");
@@ -319,7 +321,7 @@ window.onclick = function(e) {
     }
   }
 }
-  </script>
+    </script>
 
 </body>
 </html>
